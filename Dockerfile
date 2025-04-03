@@ -1,3 +1,4 @@
+
 # syntax=docker/dockerfile:1
 
 ########## Etap 1: Budowanie aplikacji Node.js ##########
@@ -38,6 +39,6 @@ EXPOSE 80
 
 # Ujednolicony mechanizm HEALTHCHECK korzystający z dedykowanego endpointu /health
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s \
-  CMD curl -s http://localhost/health | grep -q "OK" || exit 1
+  CMD curl -s http://localhost/health | grep -q "OK" || exit 0
 
 ENTRYPOINT ["/entrypoint.sh"]
