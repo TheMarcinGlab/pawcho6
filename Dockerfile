@@ -11,15 +11,15 @@ RUN mkdir -p /root/.ssh && \
 RUN --mount=type=ssh git clone git@github.com:themarcinglab/pawcho6.git /repo
 
 ##############################################
-# Etap 2: Budowanie aplikacji Node.js (kod z repozytorium)
+# Etap 2: Budowanie aplikacji Node.js
 ##############################################
 FROM scratch AS builder
-# Dodajemy system plików Alpine-minirootfs (upewnij się, że plik jest aktualny)
+# Dodajemy system plików Alpine-minirootfs
 ADD alpine-minirootfs-3.21.3-x86_64.tar /
 # Aktualizacja repozytoriów i instalacja Node.js oraz iproute2
 RUN apk update && apk add --no-cache nodejs iproute2
 WORKDIR /app
-# Kopiujemy plik aplikacji z repozytorium (np. info.js)
+# Kopiujemy plik aplikacji z repozytorium
 COPY --from=repo /repo/info.js .
 
 ##############################################
